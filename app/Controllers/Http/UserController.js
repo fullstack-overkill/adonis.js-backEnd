@@ -2,6 +2,17 @@
 const User = use('App/Models/User')
 
 class UserController {
+
+    async index(){
+      try {
+        return await User.all()
+      }catch(err){
+        return response
+          .status(err.status)
+          .send(err)
+      }
+    }
+
     // creating and saving a new user (sign-up)
     async store ({ request, response }) {
       try {
@@ -28,6 +39,6 @@ class UserController {
           .send(err)
       }
     }
-  }
+}
 
 module.exports = UserController
